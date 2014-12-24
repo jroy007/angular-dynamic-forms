@@ -115,6 +115,7 @@ angular.module('dynform', [])
                   newElement.attr('type', supported[field.type].type);
                 }
                 
+                newElement.attr('class', 'form-control');
                 //  Editable fields (those that can feed models)
                 if (angular.isDefined(supported[field.type].editable) && supported[field.type].editable) {
                   newElement.attr('name', bracket(field.model));
@@ -178,7 +179,7 @@ angular.module('dynform', [])
                       }
                       
                       if (angular.isDefined(option.label)) {
-                          newChild = newChild.wrap('<label></label>').parent();
+                          newChild = newChild.wrap('<div class="form-group"></div>').parent();
                           newChild.append(document.createTextNode(' ' + option.label));
                       }
                       newElement.append(newChild);
@@ -203,7 +204,7 @@ angular.module('dynform', [])
                       if (angular.isDefined(field.val) && field.val === val) {newChild.attr('checked', 'checked');}
                       
                       if (label) {
-                          newChild = newChild.wrap('<label></label>').parent();
+                          newChild = newChild.wrap('<div class="form-group"></div>').parent();
                           newChild.append(document.createTextNode(' ' + label));
                       }
                       newElement.append(newChild);
@@ -305,8 +306,8 @@ angular.module('dynform', [])
                   }
                   //  Everything else should be wrapped in a label tag.
                   else {
-                    newElement = newElement.wrap('<label></label>').parent();
-                    newElement.prepend(document.createTextNode(field.label + ' '));
+                    newElement = newElement.wrap('<div class="form-group"></div>').parent();
+                    newElement.prepend(angular.element('<label class="control-label">'+field.label + '</label>'));
                   }
                 }
                 
